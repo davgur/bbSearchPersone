@@ -2,9 +2,9 @@ package search;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 import org.junit.Test;
 
 public class SearchTest {
@@ -24,8 +24,8 @@ public class SearchTest {
 	private SessionFactory createSessionFactory() {
 	    Configuration configuration = new Configuration();
 	    configuration.configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties())
-				.buildServiceRegistry();
+		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties())
+				.getBootstrapServiceRegistry();
 		return configuration.buildSessionFactory(serviceRegistry);
 	}
 
